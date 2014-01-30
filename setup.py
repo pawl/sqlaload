@@ -35,8 +35,7 @@ setup(
     include_package_data=False,
     zip_safe=False,
     install_requires=[
-        'sqlalchemy>=0.7',
-        'sqlalchemy-migrate>=0.7'
+        'sqlalchemy>=0.7'
     ],
     tests_require=[],
     entry_points=\

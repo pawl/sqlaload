@@ -7,7 +7,6 @@ from sqlalchemy import create_engine
 from sqlalchemy import Integer, UnicodeText, Float, DateTime, Boolean
 from sqlalchemy.schema import Table, MetaData, Column, Index
 from sqlalchemy.sql import and_, expression
-from migrate.versioning.util import construct_engine
 
 log = logging.getLogger(__name__)
 lock = RLock()
@@ -20,10 +19,7 @@ def connect(url):
         from sqlalchemy.pool import NullPool
         kw['poolclass'] = NullPool
     engine = create_engine(url, **kw)
-    engine = construct_engine(engine)
-    meta = MetaData()
-    meta.bind = engine
-    engine._metadata = meta
+    engine._metadata = MetaData(bind=engine)
     engine._tables = dict()
     engine._indexes = dict()
     return engine
