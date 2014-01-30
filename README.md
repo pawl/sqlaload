@@ -9,7 +9,7 @@ include:
 
 * **Automatic schema**. If a column is written that does not
   exist on the table, it will be created automatically.
-* **Upserts**. Records are either created or updated, depdending on
+* **Upserts**. Records are either created or updated, depending on
   whether an existing version can be found.
 * **Query helpers** for simple queries such as all rows in a table or
   all distinct values across a set of columns.
