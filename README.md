@@ -76,7 +76,7 @@ The library currently exposes the following functions:
 * ``connect(url)``, connect to a database and return an ``engine``. See the [SQLAlchemy documentation](http://docs.sqlalchemy.org/en/rel_0_8/core/engines.html#database-urls) for information about URL schemes and formats.
 * ``get_table(engine, table_name)`` will load a table configuration from the database, either reflecting the existing schema or creating a new table (with an ``id`` column).
 * ``create_table(engine, table_name)`` and ``load_table(engine, table_name)`` are more explicit than ``get_table`` but allow the same functions.
-* ``create_table_from_existing(src_engine, src_table_name, dest_engine, dest_table_name)`` will clone the schema and create a table from a table in another database.
+* ``create_table_from_existing(src_engine, src_table_name, dest_engine, dest_table_name)`` will clone the schema and create a table from a table in another database. This is only likely to work if both the source database and destination database are the same type (mysql to postgresql won't work).
 * ``drop_table(engine, table_name)`` will remove an existing table, deleting all of its contents.
 * ``create_column(engine, table, column_name, type)`` adds a new column to a table, ``type`` must be a SQLAlchemy type class.
 * ``create_index(engine, table, columns)`` creates an index on the given table, based on a list of strings to specify the included ``columns``.
