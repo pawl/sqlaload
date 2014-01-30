@@ -1,5 +1,5 @@
 from sqlaload.schema import connect
-from sqlaload.schema import create_table, load_table, get_table, drop_table
+from sqlaload.schema import create_table, create_table_from_existing, load_table, get_table, drop_table
 from sqlaload.schema import create_column
 from sqlaload.write import add_row, update_row
 from sqlaload.write import upsert, update, delete

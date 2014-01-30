@@ -38,6 +38,20 @@ def create_table(engine, table_name):
         engine._tables[table_name] = table
         return table
 
+def create_table_from_existing(src_engine, src_table_name, dest_engine, dest_table_name):
+    with lock:
+        log.debug("Creating table: %s on %r" % (dest_table_name, dest_engine))
+        src_engine._metadata.reflect(src_engine)
+        srcTable = Table(src_table_name, src_engine._metadata)
+        
+        destTable = Table(dest_table_name, dest_engine._metadata)
+        for column in srcTable.columns:
+            destTable.append_column(column.copy())
+			
+        destTable.create()
+        dest_engine._tables[dest_table_name] = destTable
+        return destTable
+
 def load_table(engine, table_name):
     with lock:
         log.debug("Loading table: %s on %r" % (table_name, engine))
